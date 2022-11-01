@@ -30,3 +30,5 @@ class Solution {
         return 1+Math.max(L,R);
     }
 }
+// TC - O(n)
+// SC - O(n)
