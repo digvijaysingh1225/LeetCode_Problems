@@ -25,7 +25,7 @@ class Solution {
         while(!queue.isEmpty()){
             int levelNum = queue.size();
             List<Integer> l = new ArrayList<>(levelNum);
-            for(int i = 0; i < levelNum; i++){
+            while(levelNum-->0){
                 if(queue.peek().left!=null)
                     queue.offer(queue.peek().left);
                 if(queue.peek().right!=null)
