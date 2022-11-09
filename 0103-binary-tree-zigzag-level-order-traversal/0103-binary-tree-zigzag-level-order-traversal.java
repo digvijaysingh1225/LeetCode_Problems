@@ -26,14 +26,27 @@ class Solution {
             int levelNum = queue.size();
             List<Integer> l = new ArrayList<>(levelNum);
             while(levelNum-->0){
-                if(queue.peek().left!=null)
-                    queue.offer(queue.peek().left);
-                if(queue.peek().right!=null)
-                    queue.offer(queue.peek().right);
+                TreeNode temp = queue.remove();
+                if(temp.left!=null){
+                    queue.offer(temp.left);
+                }
+                if(temp.right!=null){
+                    queue.offer(temp.right);
+                }
                 if(flag == true)
-                    l.add(queue.poll().val);
+                    l.add(temp.val);
                 else
-                    l.add(0, queue.poll().val);
+                    l.add(0, temp.val);
+                
+                
+                // if(queue.peek().left!=null)
+                //     queue.offer(queue.peek().left);
+                // if(queue.peek().right!=null)
+                //     queue.offer(queue.peek().right);
+                // if(flag == true)
+                //     l.add(queue.poll().val);
+                // else
+                //     l.add(0, queue.poll().val);
             }
             flag = !flag;
             list.add(l);
