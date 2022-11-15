@@ -18,9 +18,32 @@ class Solution {
         if(root == null){
             return 0;
         }
-        int lh = countNodes(root.left);
-        int rh = countNodes(root.right);
+        int lh = countLeftHeight(root);
+        int rh = countRightHeight(root);
         
-        return lh+rh+1;
+        if(lh == rh){
+            return ((2<<lh) - 1);
+        }
+        
+        else{
+            return 1 + countNodes(root.left) + countNodes(root.right);
+        }
+        
+    }
+    public int countLeftHeight(TreeNode root){
+        int count = 0;
+        while(root.left != null){
+            count++;
+            root = root.left;
+        }
+        return count;
+    }
+    public int countRightHeight(TreeNode root){
+        int count = 0;
+        while(root.right != null){
+            count++;
+            root = root.right;
+        }
+        return count;
     }
 }
