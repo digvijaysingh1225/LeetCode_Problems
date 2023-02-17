@@ -3,7 +3,8 @@ class Solution {
         ArrayList<List<Integer>> res = new ArrayList<>();
         if(nums==null || nums.length<3)
                 return res;
-                if(target==-294967296 || target==294967296) return res;
+        if(target==-294967296 || target==294967296) 
+                return res;
         int n = nums.length;
         Arrays.sort(nums);
         
