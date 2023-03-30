@@ -54,11 +54,14 @@ class Solution {
         pathVis[node] = 1;
         
         for(int it: adj.get(node)){
+            //when the node is not visited
             if(vis[it] == 0){
                 if(dfs(it, adj, vis, pathVis))
                     return true;
                 
             }
+            // if the node has been previously visited 
+            // but it has to be visited on the same path
             else if(pathVis[it] == 1){
                 return true;
             }
