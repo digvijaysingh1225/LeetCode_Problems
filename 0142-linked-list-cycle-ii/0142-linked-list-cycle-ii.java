@@ -14,20 +14,23 @@ public class Solution {
         if(head == null || head.next == null){
             return null;
         }
-        ListNode slow = head;
+        
         ListNode fast = head;
-        ListNode entry = head;
+        ListNode slow = head;
+        ListNode cur = null;
+        
         while(fast.next != null && fast.next.next != null){
-            slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast){
-                while(slow != entry){
+            slow = slow.next;
+            if(fast == slow){
+                cur = head;
+                while(cur != slow){
+                    cur = cur.next;
                     slow = slow.next;
-                    entry = entry.next;
                 }
-                return entry;
+                break;
             }
         }
-        return null;
+        return cur;
     }
 }
