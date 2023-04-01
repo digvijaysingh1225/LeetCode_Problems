@@ -33,40 +33,75 @@ class DriverClass {
 
 class Solution {
     // Function to detect cycle in a directed graph.
-    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        // code here
-        
-        int[] vis = new int[V];
-        int[] pathVis = new int[V];
-        
+    
+    //BFS
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj){
+        int[] indegree = new int[V];
         for(int i = 0; i < V; i++){
-            if(vis[i] == 0){
-                if(dfs(i, adj, vis, pathVis) == true){
-                    return true;
+            for(int it: adj.get(i)){
+                indegree[it]++;
+            }
+        }
+        
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                q.add(i);
+            }
+        }
+        // int[] topo = new int[V];
+        int count = 0;
+        while(!q.isEmpty()){
+            int node = q.peek();
+            q.remove();
+            count++;
+            
+            for(int it: adj.get(node)){
+                indegree[it]--;
+                if(indegree[it] == 0){
+                    q.add(it);
                 }
             }
         }
-        return false;
-    }
-    
-    private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int[] vis, int[] pathVis){
-        vis[node] = 1;
-        pathVis[node] = 1;
-        
-        for(int it: adj.get(node)){
-            //when the node is not visited
-            if(vis[it] == 0){
-                if(dfs(it, adj, vis, pathVis))
-                    return true;
-                
-            }
-            // if the node has been previously visited 
-            // but it has to be visited on the same path
-            else if(pathVis[it] == 1){
-                return true;
-            }
-        }
-        pathVis[node] = 0;
-        return false;
+        if(count == V) return false;
+        return true;
     }
 }
+
+//DFS
+// public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+//         // code here
+        
+//         int[] vis = new int[V];
+//         int[] pathVis = new int[V];
+        
+//         for(int i = 0; i < V; i++){
+//             if(vis[i] == 0){
+//                 if(dfs(i, adj, vis, pathVis) == true){
+//                     return true;
+//                 }
+//             }
+//         }
+//         return false;
+//     }
+    
+//     private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int[] vis, int[] pathVis){
+//         vis[node] = 1;
+//         pathVis[node] = 1;
+        
+//         for(int it: adj.get(node)){
+//             //when the node is not visited
+//             if(vis[it] == 0){
+//                 if(dfs(it, adj, vis, pathVis))
+//                     return true;
+                
+//             }
+//             // if the node has been previously visited 
+//             // but it has to be visited on the same path
+//             else if(pathVis[it] == 1){
+//                 return true;
+//             }
+//         }
+//         pathVis[node] = 0;
+//         return false;
+//     }
