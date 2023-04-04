@@ -38,23 +38,24 @@ class Solution {
     // Function to return a list containing the DFS traversal of the graph.
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        
-        ArrayList<Integer> list = new ArrayList<>();
-        boolean[] vis = new boolean[V];
-        vis[0] = true;
-        dfs(0, vis, list, adj);
-        return list;
-    }
-    
-    public static void dfs(int node, boolean[] vis, ArrayList<Integer> list,
-    ArrayList<ArrayList<Integer>> adj){
-        vis[node] = true;
-        list.add(node);
-        for(Integer it: adj.get(node)){
-            if(vis[it] == false){
-                vis[it] = true;
-                dfs(it, vis, list, adj);
+        int[] vis = new int[V];
+        ArrayList<Integer> res = new ArrayList<>();
+        for(int i = 0; i < V; i++){
+            if(vis[i] == 0){
+                dfs(i, vis, adj, res);
             }
         }
+        return res;
+    }
+    private void dfs(int node, int[] vis, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> res){
+        vis[node] = 1;
+        res.add(node);
+        
+        for(int it: adj.get(node)){
+            if(vis[it] == 0){
+                dfs(it, vis, adj, res);
+            }
+        }
+        
     }
 }
