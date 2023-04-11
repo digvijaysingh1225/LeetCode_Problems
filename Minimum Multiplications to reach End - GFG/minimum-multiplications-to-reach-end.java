@@ -48,7 +48,7 @@ class Solution {
         q.add(new Pair(start, 0));
         int[] dist = new int[100000];
         for(int i = 0; i < dist.length; i++){
-            dist[i] = 100000;
+            dist[i] = (int)1e9;
         }
         dist[start] = 0;
         int mod = 100000;
