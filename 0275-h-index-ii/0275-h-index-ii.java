@@ -4,7 +4,7 @@ class Solution {
         int start = 0;
         int end = citations.length -1;
         while(start<=end){
-            int mid = (end + start)/2;
+            int mid = start + (end - start)/2;
             if(citations[mid] == len - mid){
                 return len - mid;
             }else if(citations[mid] < len - mid){
