@@ -1,67 +1,39 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-//         boolean col0 = true;
-//         int row = matrix.length;
-//         int col = matrix[0].length;
+        int n = matrix.length;
+        int m = matrix[0].length;
         
-//         for(int i = 0; i < row; i++){
-//             if(matrix[i][0] == 0)
-//                 col0 = false;
-//             for(int j = 1; j < col; j++){
-//                 if(matrix[i][j] == 0){
-//                     matrix[i][0] = 0;
-//                     matrix[0][j] = 0;
-//                 }
-//             }
-//         }
-//         for(int i = row-1; i >=0; i--){
-//             for(int j = col-1; j >= 0; j--){
-//                 if(matrix[i][0] == 0 || matrix[0][j] == 0){
-//                     matrix[i][j] = 0;
-//                 }
-                
-//             }
-//             if(col0 == false){
-//                 matrix[i][0] = 0;
-//             }
-//         }
-        int m=matrix.length, n=matrix[0].length;
-        boolean isRow0=false, isCol0=false;
+        int[] row = new int[m];
+        int[] col = new int[n];
         
-        for(int j=0;j<n;j++){
-            if(matrix[0][j]==0)
-                isRow0=true;
-        }
-        
-        for(int i=0;i<m;i++){
-            if(matrix[i][0]==0)
-                isCol0=true;
-        }
-        
-        for(int i=1;i<m;i++){
-            for(int j=1;j<n;j++){
-                if(matrix[i][j]==0){
-                    matrix[i][0]=0;
-                    matrix[0][j]=0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(matrix[i][j] == 0){
+                    row[j] = 1;
+                    col[i] = 1;
                 }
             }
         }
-        
-        for(int i=1;i<m;i++){
-            for(int j=1;j<n;j++){
-                if(matrix[0][j]==0 || matrix[i][0]==0)
-                    matrix[i][j]=0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(row[j] == 1 || col[i] == 1){
+                    matrix[i][j] = 0;
+                }
             }
-        }
-        
-        if(isRow0){
-            for(int j=0;j<n;j++)
-                matrix[0][j]=0;
-        }
-        
-        if(isCol0){
-            for(int i=0;i<m;i++)
-                matrix[i][0]=0;
-        }
+        }        
     }
+//     public void setnegative(int[][] matrix, int row, int col, int n, int m){
+        
+//         for(int i = 0; i < m; i++){
+//             if(matrix[row][i] != 0){
+//                 matrix[row][i] = -1;
+//             }
+//         }
+        
+//         for(int j = 0; j < n; j++){
+//             if(matrix[j][col] != 0){
+//                 matrix[j][col] = -1;
+//             }
+//         }
+//     }
 }
