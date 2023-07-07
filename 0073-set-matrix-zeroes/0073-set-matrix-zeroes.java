@@ -10,8 +10,7 @@ class Solution {
                     matrix[i][0] = 0;
                     if(j != 0){
                         matrix[0][j] = 0;
-                    }
-                    else{
+                    }else if(j == 0){
                         col0 = 0;
                     }
                 }
@@ -36,7 +35,5 @@ class Solution {
                 matrix[i][0] = 0;
             }
         }
-        
     }
-
 }
