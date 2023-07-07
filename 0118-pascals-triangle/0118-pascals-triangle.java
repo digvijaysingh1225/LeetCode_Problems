@@ -6,15 +6,18 @@ class Solution {
         }
         return result;
     }
+    
     public List<Integer> generateRow(int n){
         List<Integer> ans = new ArrayList<>();
-        int c = 1;
+        
         ans.add(1);
+        int cnt = 1;
         for(int i = 1; i < n; i++){
-            c = c * (n - i);
-            c = c / i;
-            ans.add(c);
+            cnt = cnt * ( n - i);
+            cnt = cnt/i;
+            ans.add(cnt);
         }
         return ans;
+        
     }
 }
