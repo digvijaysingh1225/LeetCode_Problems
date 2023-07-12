@@ -24,7 +24,7 @@ class Solution {
         int c1 = 0, c2 = 0;
         for(int i = 0; i < nums.length; i++){
             if(ele1 == nums[i]) c1++;
-            if(ele2 == nums[i]) c2++;
+            else if(ele2 == nums[i]) c2++;
         }
         int min = (nums.length/3)+1;
         System.out.println(min);
