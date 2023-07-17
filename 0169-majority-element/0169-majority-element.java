@@ -15,6 +15,17 @@ class Solution {
                 count--;
             }
         }
-        return ele;
+        
+        int cnt = 0;
+        for(int i = 0; i < n; i++){
+            if(nums[i] == ele){
+                cnt++;
+            }
+        }
+        if(cnt>n/2){
+            return ele;
+        }
+        return -1;
+        
     }
 }
