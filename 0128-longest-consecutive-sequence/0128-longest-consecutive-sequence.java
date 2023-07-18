@@ -11,15 +11,14 @@ class Solution {
             if(!hs.contains(nums[i]-1)){
                 int curNum = nums[i];
                 int cnt = 1;
-                while(hs.contains(curNum+1)){
-                    curNum++;
+                while(hs.contains(curNum + 1)){
                     cnt++;
+                    curNum++;
                 }
-                max = Math.max(max, cnt);
+                max = Math.max(cnt, max);
             }
             
         }
         return max;
-        
     }
 }
