@@ -1,24 +1,24 @@
 class Solution {
     public int trap(int[] height) {
-        if(height == null || height.length == 0){
-            return 0;
-        }
         int n = height.length;
-        int[] leftmax = new int[n];
-        int[] rightmax = new int[n];
-        leftmax[0] = height[0];
-        for(int i = 1; i < n; i++){
-            leftmax[i] = Math.max(leftmax[i-1], height[i]);
+        int[] prefix = new int[n];
+        int[] suffix = new int[n];
+        int max = height[0];
+        for(int i =0; i < n; i++){
+            max = Math.max(max, height[i]);
+            prefix[i] = max;
         }
-        rightmax[n-1] = height[n-1];
-        for(int i = n-2; i >= 0; i--){
-            rightmax[i] = Math.max(rightmax[i+1],height[i]);
-        }
-        int waterOnBuilding = 0;
-        for(int i = 0; i < n; i++){
-            waterOnBuilding += Math.min(leftmax[i], rightmax[i]) - height[i];
+        int max2 = height[n-1];
+        for(int i = n-1; i >=0; i--){
+            max2 = Math.max(max2, height[i]);
+            suffix[i] = max2;
         }
         
-        return waterOnBuilding;
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            count += (Math.min(prefix[i], suffix[i]) - height[i]);
+        }
+        return count;
+        
     }
 }
